@@ -16,12 +16,12 @@ else:
 
 # Check if file is accessible.
 if not os.path.isfile(keyf):
-    print('ERROR   - file {} not found or accessible'.format(keyf), file=sys.stderr)
+    print(f'ERROR   - file {keyf} not found or accessible', file=sys.stderr)
     sys.exit(1)
 
-# Open the file and extract the relevqnt line.
+# Open the file and extract the relevant line.
 try:
-    with open(keyf ,'r') as fh:
+    with open(keyf, 'r') as fh:
         wanted = (fh.read().splitlines())[1]
 except Exception as why:
     print('ERROR   - opening {}: {}'.format(keyf, str(why)), file=sys.stderr)
@@ -29,6 +29,6 @@ except Exception as why:
 
 # Print out information.
 (key, value) = re.split(',', wanted)
-print('export AWS_ACCESS_KEY_ID="{}"'.format(key))
-print('export AWS_SECRET_ACCESS_KEY="{}"'.format(value))
+print(f'export AWS_ACCESS_KEY_ID="{key}"')
+print(f'export AWS_SECRET_ACCESS_KEY="{value}"')
 print('export AWS_REGION=eu-central-1')
